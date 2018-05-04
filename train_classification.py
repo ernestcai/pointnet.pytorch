@@ -18,7 +18,6 @@ from pointnet import PointNetCls
 import torch.nn.functional as F
 
 
-
 parser = argparse.ArgumentParser()
 parser.add_argument('--batchSize', type=int, default=32, help='input batch size')
 parser.add_argument('--num_points', type=int, default=2500, help='input batch size')
@@ -95,9 +94,9 @@ for epoch in range(opt.nepoch):
                 correct = pred_choice.eq(target.data).cpu().sum()
                 print('[%d: %d/%d] %s loss: %f accuracy: %f' %(epoch, i, num_batch, blue('test'), loss.data[0], correct/float(opt.batchSize)))
     except OSError, e:
-        epoch -= 1;
-        print "[WARNING] catch OSError: ",
-        print e
+        epoch -= 1
+        print('[WARNING] catch OSError: ',end="")
+        print(e)
 
-    print 'saveing to: %s/cls_model_%d.pth'  % (opt.outf, epoch)
+    print ('saveing to: %s/cls_model_%d.pth'  % (opt.outf, epoch))
     torch.save(classifier.state_dict(), '%s/cls_model_%d.pth' % (opt.outf, epoch))
