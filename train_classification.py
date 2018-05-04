@@ -96,6 +96,8 @@ for epoch in range(opt.nepoch):
                 print('[%d: %d/%d] %s loss: %f accuracy: %f' %(epoch, i, num_batch, blue('test'), loss.data[0], correct/float(opt.batchSize)))
     except OSError, e:
         epoch -= 1;
-        print "[WARNING] catch OSError: " + e
+        print "[WARNING] catch OSError: ",
+        print e
 
+    print 'saveing to: %s/cls_model_%d.pth'  % (opt.outf, epoch)
     torch.save(classifier.state_dict(), '%s/cls_model_%d.pth' % (opt.outf, epoch))
