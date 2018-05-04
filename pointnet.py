@@ -22,18 +22,20 @@ class STN3d(nn.Module):
     def __init__(self, num_points = 2500):
         super(STN3d, self).__init__()
         self.num_points = num_points
-        self.conv1 = torch.nn.Conv1d(3, 64, 1)
-        self.conv2 = torch.nn.Conv1d(64, 128, 1)
-        self.conv3 = torch.nn.Conv1d(128, 1024, 1)
+        self.conv1 = torch.nn.Conv1d(3, 1024, 1)
+        # self.conv1 = torch.nn.Conv1d(3, 64, 1)
+        # self.conv2 = torch.nn.Conv1d(64, 128, 1)
+        # self.conv3 = torch.nn.Conv1d(128, 1024, 1)
         self.mp1 = torch.nn.MaxPool1d(num_points)
         self.fc1 = nn.Linear(1024, 512)
         self.fc2 = nn.Linear(512, 256)
         self.fc3 = nn.Linear(256, 9)
         self.relu = nn.ReLU()
 
-        self.bn1 = nn.BatchNorm1d(64)
-        self.bn2 = nn.BatchNorm1d(128)
-        self.bn3 = nn.BatchNorm1d(1024)
+        self.bn1 = nn.BatchNorm1d(1024)
+        # self.bn2 = nn.BatchNorm1d(64)
+        # self.bn2 = nn.BatchNorm1d(128)
+        # self.bn3 = nn.BatchNorm1d(1024)
         self.bn4 = nn.BatchNorm1d(512)
         self.bn5 = nn.BatchNorm1d(256)
 
